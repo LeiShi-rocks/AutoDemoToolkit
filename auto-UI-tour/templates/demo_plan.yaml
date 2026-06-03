@@ -1,0 +1,233 @@
+# Demo Plan Template — autodemo-toolkit
+# Works with any web app: Streamlit, React, plain HTML, SaaS products, etc.
+#
+# Each segment = one narration clip + one screenshot (or video clip in live mode).
+# Edit narration freely, reorder segments, swap highlights — no code changes needed.
+#
+# Run with:  ./run.sh --plan <this_file>
+
+config:
+  # ── App ──────────────────────────────────────────────────────────────────
+  app_url: http://localhost:8501       # URL of your running app
+  app_port: 8501                       # Port to health-check before recording
+                                       # (derived from app_url if omitted)
+
+  start_command: ""                    # Shell command to start the app.
+                                       # Leave empty to start the app manually
+                                       # and use --no-start when recording.
+                                       # Examples:
+                                       #   "streamlit run app.py --server.port=8501"
+                                       #   "npm start"
+                                       #   "python -m uvicorn main:app --port 8000"
+
+  app_env: {}                          # Optional env vars passed to the app process.
+                                       # Example:
+                                       #   DEMO_MODE: "true"
+                                       #   CUSTOMER: "acme"
+
+  # ── Recording ────────────────────────────────────────────────────────────
+  mode: screenshot                     # screenshot — fast: capture PNGs then use ffmpeg (recommended)
+                                       # live      — record the browser session directly
+
+  resolution: [1280, 800]             # Video dimensions in pixels
+
+  # ── Audio ─────────────────────────────────────────────────────────────────
+  voice: en-US-JennyNeural             # edge-tts voice name.
+                                       # Browse voices: edge-tts --list-voices
+                                       # Other good options:
+                                       #   en-US-GuyNeural (male)
+                                       #   en-GB-SoniaNeural (British female)
+                                       #   en-AU-NatashaNeural (Australian female)
+
+  # ── Timing ────────────────────────────────────────────────────────────────
+  llm_wait_ms: 20000                   # Max ms to wait for slow-loading content
+                                       # (async data fetches, AI-generated panels, etc.)
+
+
+segments:
+  # Each segment has:
+  #   id          — unique snake_case identifier
+  #   narration   — what the TTS voice says (use > for multi-line)
+  #   action      — what the browser does (see action reference below)
+  #   action_args — arguments for the action (depends on action type)
+  #   highlight   — optional Driver.js spotlight overlay
+  #   pause_after — seconds to hold the screen after narration ends (default 1.5)
+
+  # ── INTRO: navigate to the app ───────────────────────────────────────────
+  - id: intro
+    narration: >
+      Welcome to [Your Product Name].
+      Let me walk you through what it can do.
+    action: navigate
+    action_args:
+      url: http://localhost:8501        # The URL to open
+      wait_for: "body"                  # Optional: wait for this CSS selector
+    pause_after: 2.0
+
+  # ── HIGHLIGHT A UI SECTION ───────────────────────────────────────────────
+  - id: show_navigation
+    narration: >
+      The navigation panel lets you move between sections of the app.
+    action: scroll_top
+    highlight:
+      selector: "nav"                   # Any CSS selector
+      popover:
+        title: Navigation
+        description: Browse between sections from here.
+        side: right                     # top | bottom | left | right
+        align: start                    # start | center | end  (optional)
+    pause_after: 1.5
+
+  # ── CLICK A BUTTON ──────────────────────────────────────────────────────
+  - id: click_action
+    narration: >
+      Click the primary button to trigger the main action.
+    action: click
+    action_args:
+      selector: "button.primary"        # CSS selector for the element
+      wait_after: 0.5                   # Seconds to wait after clicking
+    pause_after: 1.5
+
+  # ── TYPE INTO AN INPUT ──────────────────────────────────────────────────
+  - id: fill_search
+    narration: >
+      Type a search query into the search box.
+    action: type
+    action_args:
+      selector: "input[type=search]"    # CSS selector for the input
+      text: "example query"             # Text to type
+      clear: true                       # Clear the field first (default true)
+    pause_after: 1.0
+
+  # ── SCROLL DOWN ─────────────────────────────────────────────────────────
+  - id: scroll_to_content
+    narration: >
+      Scroll down to see the results.
+    action: scroll_down
+    action_args:
+      pixels: 400                       # How far to scroll (default 300)
+    pause_after: 1.0
+
+  # ── SCROLL AN ELEMENT INTO VIEW ─────────────────────────────────────────
+  - id: focus_section
+    narration: >
+      This section shows the detailed breakdown.
+    action: scroll_to
+    action_args:
+      selector: "#results-section"
+    highlight:
+      selector: "#results-section"
+      popover:
+        title: Results
+        description: Detailed breakdown of the output.
+        side: bottom
+    pause_after: 1.5
+
+  # ── HOVER (reveal tooltip or dropdown) ──────────────────────────────────
+  # - id: show_tooltip
+  #   narration: >
+  #     Hover over the info icon to see the tooltip.
+  #   action: hover
+  #   action_args:
+  #     selector: ".info-icon"
+  #   pause_after: 1.5
+
+  # ── WAIT FOR AN ELEMENT ─────────────────────────────────────────────────
+  - id: wait_for_results
+    narration: >
+      The results load dynamically — here they are.
+    action: wait_for
+    action_args:
+      selector: ".results-container"    # Wait until this appears
+    highlight:
+      selector: ".results-container"
+      popover:
+        title: Live Results
+        description: Results loaded from the API.
+        side: top
+    pause_after: 1.5
+
+  # ── PRESS A KEY ─────────────────────────────────────────────────────────
+  # - id: submit_form
+  #   narration: >
+  #     Press Enter to submit the form.
+  #   action: press_key
+  #   action_args:
+  #     selector: "input[type=search]"
+  #     key: "Enter"
+  #   pause_after: 1.0
+
+  # ── SELECT FROM A DROPDOWN ──────────────────────────────────────────────
+  # - id: choose_option
+  #   narration: >
+  #     Select the second option from the dropdown.
+  #   action: select_option
+  #   action_args:
+  #     selector: "select#my-dropdown"
+  #     label: "Option Two"             # or: value: "opt2"  or: index: 1
+  #   pause_after: 1.0
+
+  # ── EXPLICIT PAUSE ──────────────────────────────────────────────────────
+  # - id: loading_pause
+  #   narration: >
+  #     The model is processing the request.
+  #   action: wait
+  #   action_args:
+  #     seconds: 3.0
+  #   pause_after: 0.5
+
+  # ── STREAMLIT EXPANDER (Streamlit apps only) ─────────────────────────────
+  # Use expand_section + expander: selector for Streamlit st.expander() panels:
+  # - id: expand_panel
+  #   narration: >
+  #     Expand the panel to see the detailed analysis.
+  #   action: expand_section
+  #   action_args:
+  #     keyword: "Panel Title"          # Matches <details> whose <summary> contains this text
+  #   highlight:
+  #     selector: "expander:Panel Title"  # Same keyword lookup for Driver.js
+  #     popover:
+  #       title: Panel Title
+  #       description: What this panel contains.
+  #       side: bottom
+  #   pause_after: 2.0
+
+  # ── OUTRO ───────────────────────────────────────────────────────────────
+  - id: outro
+    narration: >
+      That is [Product Name].
+      Thank you for watching.
+    action: scroll_top
+    pause_after: 5.0
+
+
+# ── Action Reference ──────────────────────────────────────────────────────────
+#
+# Generic actions (work with any web app):
+#
+#   navigate     url, wait_for (optional CSS selector)
+#   click        selector, wait_after (default 0.5)
+#   type         selector, text, clear (default true), delay (default 40ms)
+#   scroll_top   (no args)
+#   scroll_down  pixels (default 300)
+#   scroll_to    selector
+#   hover        selector
+#   wait         seconds
+#   wait_for     selector
+#   press_key    selector, key (e.g. "Enter", "Tab", "Escape")
+#   select_option selector, value | label | index
+#
+# Streamlit-specific actions (kept as reference — see recorder.py):
+#
+#   load_app                      Navigate to app_url, wait for stSidebar
+#   expand_section                keyword: "Panel Title" — open a <details> expander
+#   select_first_experiment       Open Streamlit selectbox, choose index 0
+#   select_second_treatment       Click first non-baseline radio option
+#   scroll_to_characteristics     Scroll down 200px
+#
+# Highlight selectors:
+#
+#   "button.primary"              Standard CSS selector
+#   "[aria-label='Search']"       ARIA-based selector
+#   "expander:Panel Title"        Finds <details> whose <summary> contains the text
+#   (omit highlight entirely)     Full-page view, no spotlight
