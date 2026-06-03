@@ -118,12 +118,13 @@ To create a new theme: copy any `themes/*.css`, override the 15 `:root` variable
 ```tsx
 <div className="slide s-title">
   <div className="badge venue">Conference 2026</div>
-  <div className={`s-title__acronym ${a(1, beat)}`}>ACRONYM</div>
-  <h1 className={`s-title__full ${a(1, beat)}`}>Full Title</h1>
-  <div className={`rule ${a(2, beat)}`} />
-  <p className={`s-title__authors ${a(2, beat)}`}>Author · Author</p>
+  <div className="s-title__acronym">ACRONYM</div>
+  <h1 className="s-title__full">Full Title</h1>
+  <div className={`rule ${a(1, beat)}`} />
+  <p className={`s-title__authors ${a(1, beat)}`}>Author · Author</p>
+  <p className={`s-title__hint ${a(2, beat)}`}>Click to begin →</p>
 </div>
-// beats: 2
+// beats: 2  (acronym+title always visible; authors at beat 1; hint at beat 2)
 ```
 
 ### 2. Stat Row (scale-spring cards)
