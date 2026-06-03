@@ -1,0 +1,32 @@
+/* Theme: indigo-porcelain — academic / research spirit
+   Indigo as ink (not accent) + porcelain white. Slow, considered pacing.
+   Best for: research papers, academic talks, technical deep-dives.
+   Inspired by: garden-skills indigo-porcelain theme.
+*/
+:root {
+  --bg:       #f8f7f4;
+  --surface:  #ffffff;
+  --surface2: #eeedf0;
+  --text:     #1b1a2e;
+  --text2:    #4a4870;
+  --text3:    #9a98b0;
+
+  --accent:    #3730a3;  --accent-lt: #e0e7ff;
+  --amber:     #92400e;  --amber-lt:  #fef3c7;
+  --purple:    #6d28d9;  --purple-lt: #ede9fe;
+  --green:     #065f46;  --green-lt:  #d1fae5;
+  --red:       #991b1b;  --red-lt:    #fee2e2;
+
+  --border:   #d4d3e0;
+  --shadow:   0 1px 8px rgba(55,48,163,.08);
+  --r:        6px;
+
+  /* Slow, considered pacing — matches academic reading rhythm */
+  font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Indigo-porcelain: tighten heading weight to feel scholarly */
+h2 { font-weight: 600; letter-spacing: -.01em; }
+.s-title__acronym { color: var(--accent); }
+.label { color: var(--accent); }

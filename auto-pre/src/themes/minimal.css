@@ -1,0 +1,24 @@
+/* Theme: minimal — white, black, single red accent, no color palette */
+:root {
+  --bg:       #ffffff;
+  --surface:  #fafafa;
+  --surface2: #f0f0f0;
+  --text:     #111111;
+  --text2:    #555555;
+  --text3:    #aaaaaa;
+
+  --accent:    #d00000;  --accent-lt: #ffe0e0;
+  --amber:     #888888;  --amber-lt:  #eeeeee;
+  --purple:    #444444;  --purple-lt: #eeeeee;
+  --green:     #222222;  --green-lt:  #eeeeee;
+  --red:       #d00000;  --red-lt:    #ffe0e0;
+
+  --border:   #dddddd;
+  --shadow:   0 1px 4px rgba(0,0,0,.08);
+  --r:        4px;
+}
+
+/* Minimal: sharper type */
+:root { font-family: 'Georgia', serif; }
+h2    { font-weight: 400; }
+.col-head, .stage-badge, .label { font-weight: 700; }

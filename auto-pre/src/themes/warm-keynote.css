@@ -1,0 +1,19 @@
+/* Theme: warm-keynote (default) — warm off-white, royal blue accent */
+:root {
+  --bg:       #faf8f4;
+  --surface:  #ffffff;
+  --surface2: #f3efe6;
+  --text:     #1a1a1a;
+  --text2:    #5a5a5a;
+  --text3:    #999999;
+
+  --accent:    #1d4ed8;  --accent-lt: #dbeafe;
+  --amber:     #b45309;  --amber-lt:  #fef3c7;
+  --purple:    #7c3aed;  --purple-lt: #ede9fe;
+  --green:     #15803d;  --green-lt:  #dcfce7;
+  --red:       #dc2626;  --red-lt:    #fee2e2;
+
+  --border:   #e5ddd0;
+  --shadow:   0 2px 12px rgba(0,0,0,.07);
+  --r:        12px;
+}

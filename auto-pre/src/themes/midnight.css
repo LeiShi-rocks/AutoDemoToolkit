@@ -1,0 +1,22 @@
+/* Theme: midnight — dark slate background, electric blue accent */
+:root {
+  --bg:       #0f1117;
+  --surface:  #1a1d27;
+  --surface2: #252836;
+  --text:     #f0f0f0;
+  --text2:    #a0a8c0;
+  --text3:    #5a6080;
+
+  --accent:    #60a5fa;  --accent-lt: #1e3a5f;
+  --amber:     #fbbf24;  --amber-lt:  #3d2f00;
+  --purple:    #a78bfa;  --purple-lt: #2e1d5a;
+  --green:     #34d399;  --green-lt:  #0d3326;
+  --red:       #f87171;  --red-lt:    #3d1010;
+
+  --border:   #2e3348;
+  --shadow:   0 2px 16px rgba(0,0,0,.4);
+  --r:        12px;
+}
+
+/* Dark-specific: stage wrapper stays dark */
+.wrapper { background: #07080d; }

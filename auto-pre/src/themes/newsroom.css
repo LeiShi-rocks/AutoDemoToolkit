@@ -1,0 +1,37 @@
+/* Theme: newsroom — newspaper editorial aesthetic
+   Newspaper cream + black serif + flag red. Zero-compromise clarity.
+   Best for: journalism, policy, factual reporting, data journalism.
+   Inspired by: garden-skills newsroom theme (NYT aesthetic).
+*/
+:root {
+  --bg:       #f5f0e8;
+  --surface:  #fdfbf7;
+  --surface2: #ede8de;
+  --text:     #0a0a0a;
+  --text2:    #3a3a3a;
+  --text3:    #888880;
+
+  --accent:    #c8001e;  --accent-lt: #fde8eb;
+  --amber:     #7a5000;  --amber-lt:  #fef3c7;
+  --purple:    #3b0764;  --purple-lt: #f3e8ff;
+  --green:     #14532d;  --green-lt:  #dcfce7;
+  --red:       #c8001e;  --red-lt:    #fde8eb;
+
+  --border:   #c8c0b0;
+  --shadow:   0 1px 3px rgba(0,0,0,.10);
+  --r:        0px;   /* Newspapers don't round corners */
+
+  font-family: 'Times New Roman', Times, Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Newsroom: no-radius on everything */
+.col-block, .stat-card, .finding-card, .pipe-stage,
+.formula-block, .metric-tile, .note, .callout,
+.result-callout, .conclusion-pt, .problem-card {
+  border-radius: 0 !important;
+}
+
+/* Newsroom: heavy serif headers */
+h2 { font-weight: 700; font-style: italic; }
+.s-title__acronym { font-style: italic; }

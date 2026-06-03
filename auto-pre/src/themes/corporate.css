@@ -1,0 +1,19 @@
+/* Theme: corporate — pure white, deep navy, clean */
+:root {
+  --bg:       #ffffff;
+  --surface:  #f8fafc;
+  --surface2: #f1f5f9;
+  --text:     #0f172a;
+  --text2:    #475569;
+  --text3:    #94a3b8;
+
+  --accent:    #0f4c8a;  --accent-lt: #dbeafe;
+  --amber:     #d97706;  --amber-lt:  #fef3c7;
+  --purple:    #6d28d9;  --purple-lt: #ede9fe;
+  --green:     #065f46;  --green-lt:  #d1fae5;
+  --red:       #b91c1c;  --red-lt:    #fee2e2;
+
+  --border:   #e2e8f0;
+  --shadow:   0 1px 6px rgba(0,0,0,.06);
+  --r:        8px;
+}
